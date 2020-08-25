@@ -121,6 +121,9 @@ app.title("Courses Manager")
 # Change main window widthand height
 app.geometry("700x350")
 
+# Change Main logo
+app.wm_iconbitmap('./logo.ico')
+
 # Fetch Our Data
 Actions.CONTAINER = courses_lists
 Actions.get_courses()
