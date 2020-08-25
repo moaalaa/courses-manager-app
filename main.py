@@ -19,7 +19,7 @@ course_label.grid(row=0, column=0, sticky=tkinter.W)
 
 course_name = tkinter.StringVar()
 course_entry = tkinter.Entry(app, textvariable=course_name)
-course_entry.grid(row=0, column=1)
+course_entry.grid(row=0, column=1, sticky=tkinter.WE)
 
 # Course Day
 course_day_label = tkinter.Label(app, text="Course Day", font=('bold', 14))
