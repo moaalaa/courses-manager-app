@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 from classes.db import Database
 
@@ -6,20 +7,43 @@ from classes.db import Database
 db = Database('courses.db')
 
 class Actions:
+    COURSE_ID = None
+    CONTAINER = None
+
     @staticmethod
-    def get_courses(container):
+    def get_courses():
         print("Fetching Courses")
         
-        container.delete(0, tk.END)
+        Actions.CONTAINER.delete(0, tk.END)
        
         rows = db.fetch()
 
         for row in rows:
-            container.insert(tk.END, row)
+            Actions.CONTAINER.insert(tk.END, row)
 
     @staticmethod
-    def add_course():
+    def add_course(course_name, course_day, course_duration, course_price):
+        print(Actions.COURSE_ID)
+        error = False
+        if course_name == '':
+            error = True
+
+        if course_day == '':
+            error = True
+            
+        if course_duration == '':
+            error = True
+        
+        if course_price == '':
+            error = True
+            
+        if error:
+            messagebox.showerror("No Data Found", "Please Fill All Fields Data")
+            return
+
         print("Add Course")
+        db.insert(course_name, course_day, course_duration, course_price)
+        Actions.get_courses()
 
     @staticmethod    
     def update_course():
@@ -27,8 +51,5 @@ class Actions:
     
     @staticmethod
     def remove_course():
-        print("Remove Course")
-
-    @staticmethod
-    def clear_fields():
-        print("Clear Fields")
+        db.remove(Actions.COURSE_ID)
+        Actions.get_courses()
