@@ -23,7 +23,6 @@ class Actions:
 
     @staticmethod
     def add_course(course_name, course_day, course_duration, course_price):
-        print(Actions.COURSE_ID)
         error = False
         if course_name == '':
             error = True
@@ -46,8 +45,27 @@ class Actions:
         Actions.get_courses()
 
     @staticmethod    
-    def update_course():
+    def update_course(course_name, course_day, course_duration, course_price):
+        error = False
+        if course_name == '':
+            error = True
+
+        if course_day == '':
+            error = True
+            
+        if course_duration == '':
+            error = True
+        
+        if course_price == '':
+            error = True
+            
+        if error:
+            messagebox.showerror("No Data Found", "Please Fill All Fields Data")
+            return
+
         print("Update Course")
+        db.update(Actions.COURSE_ID, course_name, course_day, course_duration, course_price)
+        Actions.get_courses()
     
     @staticmethod
     def remove_course():

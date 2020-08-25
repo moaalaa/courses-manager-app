@@ -84,7 +84,17 @@ add_button.grid(row=2, column=0, pady=20)
 remove_button = tkinter.Button(app, text="Remove Course", width=12, command=lambda: [Actions.remove_course(), clear_fields()])
 remove_button.grid(row=2, column=1)
 
-update_button = tkinter.Button(app, text="Update Course", width=12, command=Actions.update_course)
+update_button = tkinter.Button(
+    app, 
+    text="Update Course", 
+    width=12, 
+    command=lambda: Actions.update_course(
+        course_name.get(), 
+        course_day.get(), 
+        course_duration.get(), 
+        course_price.get(), 
+    )
+)
 update_button.grid(row=2, column=2)
 
 clear_button = tkinter.Button(app, text="Clear Fields", width=12, command=clear_fields)
